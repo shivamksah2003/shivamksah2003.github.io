@@ -1,0 +1,61 @@
+[
+  {
+    "category": "DEVOPS & AUTOMATION",
+    "color": "cyan",
+    "skills": [
+      { "name": "Jenkins CI/CD",      "level": 92, "tag": "Production" },
+      { "name": "Docker & Compose",   "level": 90, "tag": "Production" },
+      { "name": "Ansible & AWX",      "level": 88, "tag": "Production" },
+      { "name": "CI/CD Pipelines",    "level": 90, "tag": "Production" },
+      { "name": "Linux (Ubuntu)",     "level": 92, "tag": "Production" }
+    ]
+  },
+  {
+    "category": "PROGRAMMING & SCRIPTING",
+    "color": "green",
+    "skills": [
+      { "name": "Python 3",           "level": 88, "tag": "Production" },
+      { "name": "Bash Scripting",     "level": 90, "tag": "Production" },
+      { "name": "JavaScript (ES6+)",  "level": 84, "tag": "Proficient" },
+      { "name": "YAML Configs",       "level": 92, "tag": "Production" }
+    ]
+  },
+  {
+    "category": "CLOUD & NETWORKING",
+    "color": "purple",
+    "skills": [
+      { "name": "AWS (EC2, IAM, S3)", "level": 78, "tag": "Proficient" },
+      { "name": "SSH & Firewall (UFW)","level": 88, "tag": "Production" },
+      { "name": "Networking (TCP/IP, DNS)", "level": 82, "tag": "Proficient" },
+      { "name": "Virtual Machines",   "level": 85, "tag": "Proficient" }
+    ]
+  },
+  {
+    "category": "WEB & DATABASES",
+    "color": "pink",
+    "skills": [
+      { "name": "React.js & Next.js",  "level": 85, "tag": "Proficient" },
+      { "name": "REST APIs & Express", "level": 82, "tag": "Proficient" },
+      { "name": "MySQL & MongoDB",     "level": 80, "tag": "Proficient" },
+      { "name": "Firebase (Firestore)","level": 78, "tag": "Proficient" }
+    ]
+  },
+  {
+    "category": "AI & COMPUTER VISION",
+    "color": "orange",
+    "skills": [
+      { "name": "OpenCV",             "level": 84, "tag": "Proficient" },
+      { "name": "YOLO Object Detect", "level": 82, "tag": "Proficient" },
+      { "name": "NumPy & Data Proc",  "level": 80, "tag": "Proficient" }
+    ]
+  },
+  {
+    "category": "TOOLS & WORKFLOWS",
+    "color": "indigo",
+    "skills": [
+      { "name": "Git & GitHub",       "level": 92, "tag": "Production" },
+      { "name": "VS Code & IntelliJ", "level": 90, "tag": "Production" },
+      { "name": "Postman API",        "level": 85, "tag": "Proficient" }
+    ]
+  }
+]

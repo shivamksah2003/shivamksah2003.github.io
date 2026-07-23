@@ -1,0 +1,70 @@
+[
+  {
+    "id": 1,
+    "slug": "ci-cd-pipeline",
+    "title": "End-to-End CI/CD Pipeline for Web Application",
+    "shortDesc": "Automated build, test, and deployment pipeline triggered on every GitHub commit.",
+    "fullDesc": "Designed and implemented an automated CI/CD pipeline using Jenkins for application build, testing, and deployment. Configured GitHub Webhooks to trigger automated builds and deployments on every code commit. Containerized the application using Docker to ensure consistent deployment across multiple environments, and automated deployments on Linux servers using Bash scripting to replace manual deployment processes.",
+    "tech": ["Jenkins", "Docker", "Git", "GitHub", "Linux", "Bash"],
+    "github": "https://github.com/shivamksah2003/ci-cd-pipeline",
+    "image": "/images/project1.jpg",
+    "highlights": [
+      "Designed & implemented automated CI/CD pipeline using Jenkins for build, test & deploy",
+      "Configured GitHub Webhooks for automated builds triggered on every code commit",
+      "Containerized application using Docker for environment consistency across stages",
+      "Automated Linux server deployments using Bash scripting",
+      "Replaced manual deployment process, cutting down on repetitive steps & human error"
+    ]
+  },
+  {
+    "id": 2,
+    "slug": "ansible-awx",
+    "title": "Infrastructure Automation Using Ansible & AWX",
+    "shortDesc": "Automated Linux server provisioning and configuration management using Playbooks.",
+    "fullDesc": "Automated Linux server provisioning and configuration using reusable Ansible Playbooks. Managed inventories, credentials, job templates, and workflow automation through AWX. Automated package installation, user management, service configuration, and application deployment by developing modular YAML playbooks following infrastructure automation best practices.",
+    "tech": ["Ansible", "AWX", "Linux", "YAML", "SSH"],
+    "github": "https://github.com/shivamksah2003/ansible-awx",
+    "image": "/images/project2.jpg",
+    "highlights": [
+      "Automated Linux server provisioning & configuration using reusable Ansible Playbooks",
+      "Managed inventories, credentials, job templates & workflow automation via AWX",
+      "Automated package installation, user management, service config & app deployment",
+      "Developed modular YAML playbooks following IaC automation best practices",
+      "Standardized server configurations across environments, eliminating manual setup error"
+    ]
+  },
+  {
+    "id": 3,
+    "slug": "three-tier-docker",
+    "title": "Dockerized Three-Tier Web Application",
+    "shortDesc": "Containerized frontend, backend, and database services with reverse proxy.",
+    "fullDesc": "Built and deployed a containerized three-tier web application consisting of frontend, backend, and database services. Managed multi-container environments using Docker Compose, configured Docker networking, persistent storage, and service communication. Implemented Nginx as a reverse proxy for efficient request routing across development and testing environments.",
+    "tech": ["Docker", "Docker Compose", "Nginx", "MySQL", "Linux"],
+    "github": "https://github.com/shivamksah2003/three-tier-docker",
+    "image": "/images/project3.jpg",
+    "highlights": [
+      "Built & deployed containerized 3-tier web app (frontend, backend, database)",
+      "Managed multi-container environment orchestration using Docker Compose",
+      "Configured Docker custom networking, persistent storage & service communication",
+      "Implemented Nginx as a reverse proxy for efficient request routing",
+      "Standardized application deployment across dev and testing environments"
+    ]
+  },
+  {
+    "id": 4,
+    "slug": "ai-detection",
+    "title": "AI-Powered Person Detection & Tracking System",
+    "shortDesc": "Real-time person detection and tracking using computer vision techniques.",
+    "fullDesc": "Developed a desktop-based application for real-time person detection and tracking using computer vision techniques (YOLO & OpenCV). Designed a modular architecture to improve scalability and maintainability, optimized image processing workflows to enhance application performance, and containerized the application using Docker for consistent execution.",
+    "tech": ["Python", "OpenCV", "YOLO", "Docker", "Git"],
+    "github": "https://github.com/shivamksah2003/ai-detection",
+    "image": "/images/project4.jpg",
+    "highlights": [
+      "Real-time person detection & tracking using YOLO object model + OpenCV",
+      "Designed modular architecture to improve application scalability & maintainability",
+      "Optimized image processing workflows for high-frame-rate computer vision performance",
+      "Containerized application using Docker for consistent execution across environments",
+      "Managed project codebase using Git following version control best practices"
+    ]
+  }
+]

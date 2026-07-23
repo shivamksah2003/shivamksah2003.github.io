@@ -1,0 +1,8 @@
+# This file keeps the /public/images/ directory tracked by Git.
+# Add your project images here:
+#   project1.jpg  → End-to-End CI/CD Pipeline
+#   project2.jpg  → Infrastructure Automation (Ansible & AWX)
+#   project3.jpg  → Dockerized Three-Tier Web App
+#   project4.jpg  → AI Person Detection System
+#
+# Also place your resume here (one level up at /public/resume.pdf).

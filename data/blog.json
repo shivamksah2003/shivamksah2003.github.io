@@ -1,0 +1,47 @@
+[
+  {
+    "slug": "docker-networking-bridge",
+    "title": "TIL: How Docker Bridge Networking Actually Works",
+    "date": "2026-07-10",
+    "readTime": "4 min read",
+    "tags": ["Docker", "Networking", "Linux"],
+    "excerpt": "I spent two hours debugging why two containers couldn't talk to each other. Turns out I was on different networks. Here's what I learned about Docker's bridge driver and why it matters.",
+    "content": "When you run `docker network create mynet`, Docker creates a virtual bridge (veth pair) on the host. Containers on the same bridge can resolve each other by container name via Docker's embedded DNS. Containers on different networks — even on the same host — are completely isolated by default. The fix? `docker network connect` or define them in the same `docker-compose.yml` under the same network key."
+  },
+  {
+    "slug": "ansible-vault-secrets",
+    "title": "TIL: Ansible Vault for Managing Secrets the Right Way",
+    "date": "2026-07-01",
+    "readTime": "3 min read",
+    "tags": ["Ansible", "Security", "DevOps"],
+    "excerpt": "Hardcoding passwords in Ansible vars files is a security nightmare. Ansible Vault encrypts sensitive data at rest — here's the one-liner workflow I now use on every project.",
+    "content": "Use `ansible-vault encrypt_string 'mysecret' --name 'db_password'` to encrypt inline. Store the vault password in a `.vault_pass` file (gitignored!), then pass it with `--vault-password-file .vault_pass`. Your playbooks stay readable and your secrets stay encrypted in Git."
+  },
+  {
+    "slug": "jenkins-shared-libraries",
+    "title": "TIL: Jenkins Shared Libraries Kill Duplicated Pipeline Code",
+    "date": "2026-06-20",
+    "readTime": "5 min read",
+    "tags": ["Jenkins", "CI/CD", "Groovy"],
+    "excerpt": "I had the same Docker build stage copy-pasted across 6 Jenkinsfiles. Shared Libraries let you define pipeline steps once and import them everywhere.",
+    "content": "Create a `vars/dockerBuild.groovy` file in your shared library repo. Define a `call(Map config)` method. In any Jenkinsfile: `@Library('my-shared-lib') _` then `dockerBuild(image: 'myapp', tag: env.BUILD_NUMBER)`. One change propagates everywhere — no more drift between pipelines."
+  },
+  {
+    "slug": "nginx-reverse-proxy-upstream",
+    "title": "TIL: Nginx Upstream Blocks for Load Balancing Containers",
+    "date": "2026-06-10",
+    "readTime": "3 min read",
+    "tags": ["Nginx", "Docker", "Networking"],
+    "excerpt": "Nginx can load-balance across multiple Docker containers with three lines of config. I always reach for this pattern in three-tier deployments.",
+    "content": "Define an `upstream` block: `upstream backend { server app1:3000; server app2:3000; }`. Then `proxy_pass http://backend;` in your location block. Nginx round-robins by default. Add `least_conn;` inside the upstream block for connection-aware balancing. Health checks require Nginx Plus or a custom script."
+  },
+  {
+    "slug": "yolo-inference-optimization",
+    "title": "TIL: Optimising YOLO v8 Inference for Real-Time Detection",
+    "date": "2026-05-28",
+    "readTime": "4 min read",
+    "tags": ["YOLO", "Python", "Computer Vision"],
+    "excerpt": "Running YOLO at 5 FPS on a CPU isn't real-time. Two changes took me to 32 FPS without a GPU. Here's what made the difference.",
+    "content": "Switch from full precision to half precision: `model.predict(img, half=True)`. Resize input frames to 416×416 before inference instead of full 1080p. Use `stream=True` with a generator instead of loading all frames into memory. Finally, skip every other frame and interpolate bounding boxes — humans can't perceive the difference at 30+ FPS."
+  }
+]

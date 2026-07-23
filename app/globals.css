@@ -1,0 +1,288 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── CSS Variables ─────────────────────────────────────────────────────── */
+:root {
+  /* Light sci-fi mode */
+  --bg:          #f0f4ff;
+  --bg-card:     #ffffff;
+  --bg-surface:  #e8eeff;
+  --border:      rgba(0, 120, 200, 0.25);
+  --border-glow: rgba(0, 120, 200, 0.6);
+  --text-1:      #03060f;
+  --text-2:      #1a3060;
+  --text-3:      #4a6090;
+  --neon:        #0066cc;
+  --neon-alt:    #6600cc;
+  --neon-green:  #007744;
+  --glow:        rgba(0, 102, 204, 0.15);
+}
+
+.dark {
+  /* Dark sci-fi / cyberpunk mode */
+  --bg:          #020408;
+  --bg-card:     #0a1628;
+  --bg-surface:  #050d18;
+  --border:      rgba(0, 245, 255, 0.15);
+  --border-glow: rgba(0, 245, 255, 0.6);
+  --text-1:      #e0f4ff;
+  --text-2:      #7eb8d4;
+  --text-3:      #3a6880;
+  --neon:        #00f5ff;
+  --neon-alt:    #a855f7;
+  --neon-green:  #00ff88;
+  --glow:        rgba(0, 245, 255, 0.08);
+}
+
+/* ─── Base ──────────────────────────────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text-1);
+    font-family: var(--font-space), system-ui, sans-serif;
+    transition: background-color 0.4s ease, color 0.4s ease;
+    overflow-x: hidden;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar       { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg-surface); }
+  ::-webkit-scrollbar-thumb { background: var(--neon); border-radius: 9999px; opacity: 0.5; }
+
+  /* Selection */
+  ::selection { background: var(--neon); color: var(--bg); }
+}
+
+/* ─── Sci-Fi Utilities ──────────────────────────────────────────────────── */
+@layer utilities {
+
+  /* ── Grid background ── */
+  .grid-bg {
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  /* ── Dot grid background ── */
+  .dot-bg {
+    background-image: radial-gradient(var(--border) 1px, transparent 1px);
+    background-size: 30px 30px;
+  }
+
+  /* ── Scanline overlay (pseudo-element on parent) ── */
+  .scanlines::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 3px,
+      rgba(0, 245, 255, 0.015) 3px,
+      rgba(0, 245, 255, 0.015) 4px
+    );
+    pointer-events: none;
+    z-index: 9999;
+  }
+  body.dark .scanlines::after { opacity: 1; }
+  body:not(.dark) .scanlines::after { opacity: 0; }
+
+  /* ── Scan line sweep ── */
+  .scan-sweep::before {
+    content: '';
+    position: absolute;
+    inset-inline: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--neon), transparent);
+    opacity: 0.4;
+    animation: scan 8s linear infinite;
+    pointer-events: none;
+  }
+
+  /* ── Neon text glow ── */
+  .neon-text {
+    color: var(--neon);
+    text-shadow: 0 0 7px var(--neon), 0 0 14px color-mix(in srgb, var(--neon) 40%, transparent);
+  }
+  .neon-text-purple { color: #a855f7; text-shadow: 0 0 7px #a855f7, 0 0 14px rgba(168,85,247,0.4); }
+  .neon-text-green  { color: var(--neon-green); text-shadow: 0 0 7px var(--neon-green), 0 0 14px color-mix(in srgb, var(--neon-green) 40%, transparent); }
+  .neon-text-pink   { color: #ff006e; text-shadow: 0 0 7px #ff006e, 0 0 14px rgba(255,0,110,0.4); }
+
+  /* ── HUD card ── */
+  .hud-card {
+    position: relative;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+  }
+  .hud-card:hover {
+    border-color: var(--border-glow);
+    box-shadow: 0 0 20px var(--glow), inset 0 0 20px rgba(0,0,0,0.3);
+    transform: translateY(-2px);
+  }
+
+  /* Corner brackets on hud-card */
+  .hud-card::before,
+  .hud-card::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-color: var(--neon);
+    border-style: solid;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .hud-card::before {
+    top: -1px; left: -1px;
+    border-width: 2px 0 0 2px;
+    border-radius: 0.5rem 0 0 0;
+  }
+  .hud-card::after {
+    bottom: -1px; right: -1px;
+    border-width: 0 2px 2px 0;
+    border-radius: 0 0 0.5rem 0;
+  }
+  .hud-card:hover::before,
+  .hud-card:hover::after { opacity: 1; }
+
+  /* ── Holographic shimmer ── */
+  .holographic {
+    background: linear-gradient(
+      105deg,
+      transparent 30%,
+      color-mix(in srgb, var(--neon) 8%, transparent) 50%,
+      transparent 70%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2.5s linear infinite;
+  }
+
+  /* ── Neon button ── */
+  .btn-neon {
+    position: relative;
+    border: 1px solid var(--neon);
+    color: var(--neon);
+    background: transparent;
+    font-family: var(--font-orbitron), sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.625rem 1.5rem;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    overflow: hidden;
+  }
+  .btn-neon::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--neon);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .btn-neon:hover {
+    color: var(--bg);
+    box-shadow: 0 0 20px var(--neon), 0 0 40px color-mix(in srgb, var(--neon) 40%, transparent);
+    text-shadow: none;
+  }
+  .btn-neon:hover::before { opacity: 1; }
+  .btn-neon span { position: relative; z-index: 1; }
+
+  /* ── Solid neon button ── */
+  .btn-neon-solid {
+    background: var(--neon);
+    color: var(--bg);
+    border: 1px solid var(--neon);
+    font-family: var(--font-orbitron), sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.625rem 1.5rem;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 0 15px color-mix(in srgb, var(--neon) 50%, transparent);
+  }
+  .btn-neon-solid:hover {
+    box-shadow: 0 0 30px var(--neon), 0 0 60px color-mix(in srgb, var(--neon) 40%, transparent);
+    transform: translateY(-1px);
+  }
+
+  /* ── Section label ── */
+  .section-label {
+    font-family: var(--font-orbitron), sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--neon);
+    text-shadow: 0 0 6px color-mix(in srgb, var(--neon) 60%, transparent);
+  }
+
+  /* ── Terminal window ── */
+  .terminal-window {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    overflow: hidden;
+  }
+  .terminal-titlebar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    background: color-mix(in srgb, var(--neon) 3%, var(--bg-card));
+  }
+
+  /* ── Blinking cursor ── */
+  .cursor::after {
+    content: '▋';
+    animation: blink 1s step-end infinite;
+    color: var(--neon);
+  }
+
+  /* ── HUD divider ── */
+  .hud-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--neon), transparent);
+    opacity: 0.3;
+  }
+
+  /* ── Status dot ── */
+  .status-online { background: #00ff88; box-shadow: 0 0 6px #00ff88; }
+  .status-yellow { background: #ffe600; box-shadow: 0 0 6px #ffe600; }
+
+  /* ── Input neon focus ── */
+  .input-neon {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    color: var(--text-1);
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    width: 100%;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    font-family: var(--font-space), sans-serif;
+  }
+  .input-neon::placeholder { color: var(--text-3); }
+  .input-neon:focus {
+    border-color: var(--neon);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--neon) 15%, transparent);
+  }
+
+  /* ── Orbitron heading helper ── */
+  .font-display { font-family: var(--font-orbitron), sans-serif; }
+}
